@@ -44,12 +44,12 @@
             const data = await response.json();
 
             const usdToKrw = data.rates.KRW;
-            const jpyToKrw = data.rates.KRW / data.rates.JPY * 1000;
-            const phpToKrw = data.rates.KRW / data.rates.PHP * 1000;
+            const jpyToKrw = (data.rates.KRW / data.rates.JPY * 1000).toFixed(0);
+            const phpToKrw = (data.rates.KRW / data.rates.PHP * 1000).toFixed(0);
 
-            document.getElementById('usd-rate').innerText = `1 USD = ${usdToKrw.toLocaleString()}원`;
-            document.getElementById('jpy-rate').innerText = `1,000 JPY = ${jpyToKrw.toLocaleString()}원`;
-            document.getElementById('php-rate').innerText = `1,000 PHP = ${phpToKrw.toLocaleString()}원`;
+            document.getElementById('usd-rate').innerText = `1 USD = ${parseInt(usdToKrw).toLocaleString()}원`;
+            document.getElementById('jpy-rate').innerText = `1,000 JPY = ${parseInt(jpyToKrw).toLocaleString()}원`;
+            document.getElementById('php-rate').innerText = `1,000 PHP = ${parseInt(phpToKrw).toLocaleString()}원`;
         }
 
         fetchExchangeRate();
