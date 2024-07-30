@@ -47,9 +47,9 @@
             const jpyToKrw = data.rates.KRW / data.rates.JPY * 1000;
             const phpToKrw = data.rates.KRW / data.rates.PHP * 1000;
 
-            document.getElementById('usd-rate').innerText = `1 USD = ${usdToKrw.toFixed(2)}원`;
-            document.getElementById('jpy-rate').innerText = `1,000 JPY = ${jpyToKrw.toFixed(2)}원`;
-            document.getElementById('php-rate').innerText = `1,000 PHP = ${phpToKrw.toFixed(2)}원`;
+            document.getElementById('usd-rate').innerText = `1 USD = ${usdToKrw.toLocaleString()}원`;
+            document.getElementById('jpy-rate').innerText = `1,000 JPY = ${jpyToKrw.toLocaleString()}원`;
+            document.getElementById('php-rate').innerText = `1,000 PHP = ${phpToKrw.toLocaleString()}원`;
         }
 
         fetchExchangeRate();
