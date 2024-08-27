@@ -5,43 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>환율 정보</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+        * {
             margin: 0;
-            padding: 20px;
+            padding: 0;
             box-sizing: border-box;
+        }
+        html, body {
+            height: 100%;
+            width: 100%;
+            font-family: Arial, sans-serif;
             background-color: #f0f0f0;
         }
         .exchange-rate-container {
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            width: 100%;
-            max-width: 800px;
-        }
-        .exchange-rate {
             display: flex;
             flex-direction: column;
-        }
-        .exchange-rate > div {
-            padding: 20px;
-            text-align: center;
+            height: 100%;
+            width: 100%;
+            background-color: white;
         }
         .header {
             background-color: #4CAF50;
             color: white;
             font-weight: bold;
-            font-size: 1.2em;
+            font-size: 5vw;
+            padding: 20px;
+            text-align: center;
+        }
+        .exchange-rate {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
         .rate-item {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
+            flex: 1;
+            padding: 20px;
             border-bottom: 1px solid #e0e0e0;
         }
         .rate-item:last-child {
@@ -49,22 +50,28 @@
         }
         .currency {
             font-weight: bold;
+            font-size: 6vw;
+            margin-bottom: 10px;
+        }
+        .rate {
+            font-size: 5vw;
         }
         .error {
             color: red;
             text-align: center;
-            padding: 10px;
+            padding: 20px;
+            font-size: 4vw;
         }
         #retry-button {
             display: block;
-            margin: 10px auto;
-            padding: 10px 20px;
+            margin: 20px auto;
+            padding: 15px 30px;
             background-color: #4CAF50;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 1em;
+            font-size: 4vw;
         }
         #retry-button:hover {
             background-color: #45a049;
@@ -73,24 +80,27 @@
             .exchange-rate {
                 flex-direction: row;
             }
-            .exchange-rate > div {
-                flex: 1;
+            .rate-item {
+                border-bottom: none;
                 border-right: 1px solid #e0e0e0;
             }
-            .exchange-rate > div:last-child {
+            .rate-item:last-child {
                 border-right: none;
             }
-            .rate-item {
-                flex-direction: column;
-                border-bottom: none;
+            .header {
+                font-size: 3vw;
             }
             .currency {
-                margin-bottom: 10px;
+                font-size: 3vw;
             }
-        }
-        @media (max-width: 767px) {
-            .exchange-rate-container {
-                max-width: 400px;
+            .rate {
+                font-size: 2.5vw;
+            }
+            .error {
+                font-size: 2vw;
+            }
+            #retry-button {
+                font-size: 2vw;
             }
         }
     </style>
@@ -101,15 +111,15 @@
         <div class="exchange-rate">
             <div class="rate-item">
                 <span class="currency">USD</span>
-                <span id="usd-rate">로딩 중...</span>
+                <span id="usd-rate" class="rate">로딩 중...</span>
             </div>
             <div class="rate-item">
                 <span class="currency">JPY</span>
-                <span id="jpy-rate"></span>
+                <span id="jpy-rate" class="rate"></span>
             </div>
             <div class="rate-item">
                 <span class="currency">PHP</span>
-                <span id="php-rate"></span>
+                <span id="php-rate" class="rate"></span>
             </div>
         </div>
         <div id="error-message" class="error" style="display: none;"></div>
