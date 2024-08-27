@@ -14,65 +14,104 @@
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
+            background-color: #f0f0f0;
+        }
+        .exchange-rate-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 100%;
+            max-width: 800px;
         }
         .exchange-rate {
             display: flex;
             flex-direction: column;
-            border: 1px solid black;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
         }
-        .exchange-rate div {
-            padding: 15px;
+        .exchange-rate > div {
+            padding: 20px;
             text-align: center;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        .exchange-rate div:last-child {
-            border-bottom: none;
         }
         .header {
-            background-color: #f0f0f0;
+            background-color: #4CAF50;
+            color: white;
             font-weight: bold;
             font-size: 1.2em;
         }
+        .rate-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .rate-item:last-child {
+            border-bottom: none;
+        }
+        .currency {
+            font-weight: bold;
+        }
         .error {
             color: red;
+            text-align: center;
+            padding: 10px;
         }
         #retry-button {
-            margin-top: 10px;
-            padding: 10px;
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
             background-color: #4CAF50;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 1em;
         }
         #retry-button:hover {
             background-color: #45a049;
         }
-        @media (max-width: 480px) {
-            body {
-                padding: 10px;
+        @media (min-width: 768px) {
+            .exchange-rate {
+                flex-direction: row;
             }
-            .exchange-rate div {
-                padding: 12px;
-                font-size: 0.9em;
+            .exchange-rate > div {
+                flex: 1;
+                border-right: 1px solid #e0e0e0;
             }
-            .header {
-                font-size: 1.1em;
+            .exchange-rate > div:last-child {
+                border-right: none;
+            }
+            .rate-item {
+                flex-direction: column;
+                border-bottom: none;
+            }
+            .currency {
+                margin-bottom: 10px;
+            }
+        }
+        @media (max-width: 767px) {
+            .exchange-rate-container {
+                max-width: 400px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="exchange-rate">
+    <div class="exchange-rate-container">
         <div class="header">실시간 환율</div>
-        <div id="usd-rate">데이터를 불러오는 중...</div>
-        <div id="jpy-rate"></div>
-        <div id="php-rate"></div>
+        <div class="exchange-rate">
+            <div class="rate-item">
+                <span class="currency">USD</span>
+                <span id="usd-rate">로딩 중...</span>
+            </div>
+            <div class="rate-item">
+                <span class="currency">JPY</span>
+                <span id="jpy-rate"></span>
+            </div>
+            <div class="rate-item">
+                <span class="currency">PHP</span>
+                <span id="php-rate"></span>
+            </div>
+        </div>
         <div id="error-message" class="error" style="display: none;"></div>
         <button id="retry-button" style="display: none;">다시 시도</button>
     </div>
